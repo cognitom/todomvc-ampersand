@@ -1,0 +1,32 @@
+doctype html
+html(lang="en" data-framework="ampersand")
+  head
+    meta(charset="utf-8")
+    title Ampersand.js • TodoMVC
+    link(rel="stylesheet" href="css/style.css")
+
+  body
+    section#todoapp
+      header#header
+        h1 todos
+        input#new-todo(placeholder="What needs to be done?" autofocus)
+      section#main
+        input#toggle-all(type="checkbox")
+        label(for="toggle-all">Mark all as complete)
+        ul#todo-list
+      footer#footer
+        span#todo-count
+        ul#filters
+          li: a.filters-none.selected(href="#/") All
+          li: a.filters-active(href="#/active") Active
+          li: a.filters-completed(href="#/completed") Completed
+        button#clear-completed
+          | Clear completed (
+          span 1
+          | )
+    footer#info
+      p Double-click to edit a todo
+      p
+        | Originally part of&nbsp;
+        a(href="http://todomvc.com") TodoMVC
+    script(src="js/app.js")
