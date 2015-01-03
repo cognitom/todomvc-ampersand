@@ -5,6 +5,7 @@ minifyCss    = require 'gulp-minify-css'
 csslint      = require 'gulp-csslint'
 notify       = require 'gulp-notify'
 base64       = require 'gulp-base64'
+replace      = require 'gulp-replace'
 
 $ =
   src:    './src/css/style.css'
