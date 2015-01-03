@@ -4,6 +4,11 @@
 
 > _[Ampersand.js - ampersandjs.com](http://ampersandjs.com)_
 
+## Getting started
+
+0. Clone or download this repo.
+0. Install dependencies: `$ npm install`
+0. Start local server and watch: `$ npm start`
 
 ## Learning Ampersand.js
 
