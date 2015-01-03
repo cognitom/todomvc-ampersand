@@ -16,7 +16,7 @@ gulp.task 'default', (cb) ->
 gulp.task 'clean', (cb) -> del [$.dist], -> cb()
 
 gulp.task 'build', (cb) ->
-  runSequence ['browserify', 'css'], cb
+  runSequence ['browserify', 'css', 'jade'], cb
 
 gulp.task 'watch', ->
   browserSync.init

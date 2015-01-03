@@ -11,6 +11,12 @@ $ =
   src:    './src/css/style.css'
   dist:   './public/css/'
   target: './src/css/**/*.css'
+  # these're not in CSS spec
+  exceptions: [
+    'min-device-pixel-ratio'
+    'appearance'
+    'font-smoothing'
+  ]
   cssrules:
     'adjoining-classes': false
     'box-model': false
@@ -24,9 +30,11 @@ $ =
     'vendor-prefix': false
 
 gulp.task 'css', ->
+  re = new RegExp "\-webkit\-(?!(#{$.exceptions.join '|'}))"
+
   gulp.src $.src
   .pipe cssimport()
-  .pipe replace '-webkit-', ''
+  .pipe replace re, ''
   .pipe autoprefixer 'last 2 versions'
   #.pipe base64()
   .pipe minifyCss keepSpecialComments: 0
