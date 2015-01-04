@@ -16,7 +16,12 @@ gulp.task 'default', (cb) ->
 gulp.task 'clean', (cb) -> del [$.dist], -> cb()
 
 gulp.task 'build', (cb) ->
-  runSequence ['browserify', 'css', 'jade'], cb
+  runSequence [
+    'browserify'
+    'css'
+    'handlebars'
+    #'jade'
+  ], cb
 
 gulp.task 'watch', ->
   browserSync.init
@@ -24,6 +29,15 @@ gulp.task 'watch', ->
     server: baseDir: $.dist
   o = debounceDelay: 3000
   gulp.watch ["#{$.src}css/**/*"], o, ['css']
-  gulp.watch ["#{$.src}jade/**/*"], o, ['jade']
-  gulp.watch ["#{$.src}coffee/**/*", "#{$.src}jade/component/**/*"], o, ['browserify']
-  gulp.watch ["#{$.dist}*.html", "#{$.dist}js/**/*.js", "#{$.dist}css/**/*.css"], o, reload
+  gulp.watch ["#{$.src}hbs/*"], o, ['handlebars']
+  #gulp.watch ["#{$.src}jade/**/*"], o, ['jade']
+  gulp.watch [
+    "#{$.src}coffee/**/*"
+    "#{$.src}hbs/component/**/*"
+    #"#{$.src}jade/component/**/*"
+  ], o, ['browserify']
+  gulp.watch [
+    "#{$.dist}*.html"
+    "#{$.dist}js/**/*.js"
+    "#{$.dist}css/**/*.css"
+  ], o, reload

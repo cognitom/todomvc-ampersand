@@ -4,7 +4,8 @@ ENTER_KEY = 13
 ESC_KEY   = 27
 
 module.exports = View.extend
-  template: require '../../jade/component/todo.jade'
+  template: require '../../hbs/component/todo.hbs'
+  #template: require '../../jade/component/todo.jade'
 
   events:
     'change .toggle': 'checkTask'
@@ -39,6 +40,7 @@ module.exports = View.extend
   render: ->
     @renderWithTemplate()
     @input = @query '.edit' # cache reference
+    @
 
   checkTask: (e) -> @model.completed = e.target.checked
 

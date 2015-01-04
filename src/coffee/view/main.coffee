@@ -4,6 +4,8 @@ TodoView = require './todo'
 ENTER_KEY = 13
 
 module.exports = View.extend
+  template: require '../../hbs/component/body.hbs'
+
   events:
     'keypress #new-todo'    : 'keypress'
     'click #toggle-all'     : 'toggleAll'
@@ -35,9 +37,11 @@ module.exports = View.extend
       name    : 'checked'
       selector: '#toggle-all'
 
-  initialize: ->
+  render: ->
+    @renderWithTemplate()
     @renderCollection app.me.todos.subset, TodoView, @query '#todo-list'
     @mainInput = @query '#new-todo'
+    @
 
   keypress: (e) ->
     val = @mainInput.value.trim()

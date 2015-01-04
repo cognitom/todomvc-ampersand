@@ -1,7 +1,8 @@
 gulp       = require 'gulp'
 browserify = require 'browserify'
 coffeeify  = require 'coffeeify'
-jadeify    = require 'jadeify'
+hbsfy      = require 'hbsfy'
+#jadeify    = require 'jadeify'
 source     = require 'vinyl-source-stream'
 buffer     = require 'vinyl-buffer'
 streamify  = require 'gulp-streamify'
@@ -16,10 +17,16 @@ $ =
 gulp.task 'browserify', ->
   browserify
     entries: [$.src]
-    extensions: ['.js','.coffee','.jade']
+    extensions: [
+      '.js'
+      '.coffee'
+      '.hbs'
+      #'.jade'
+    ]
     debug: true
   .transform coffeeify
-  .transform jadeify
+  .transform hbsfy
+  #.transform jadeify
   .bundle()
   .pipe source "#{path.basename $.src, '.coffee'}.js"
   .pipe buffer()
